@@ -2,13 +2,22 @@
 
 A small interactive board that sorts fruits and vegetables, then automatically returns each item to the main list after five seconds. Built for the 7Solutions assignment, including the optional department aggregation API.
 
+## Live demo
+
+- **Website:** [frontend-assignment-7-solutions.vercel.app](https://frontend-assignment-7-solutions.vercel.app)
+- **Department API:** [GET /api/departments](https://frontend-assignment-7-solutions.vercel.app/api/departments)
+- **Source:** [besterdev/frontend-assignment-7-solutions](https://github.com/besterdev/frontend-assignment-7-solutions)
+- **Assignment:** [7-solutions/frontend-assignment](https://github.com/7-solutions/frontend-assignment)
+
 ## Getting started
 
 **Requirements:** Node.js 22.12+ and npm. No environment variables, database, or API key are required. The department endpoint needs an internet connection to reach DummyJSON.
 
-Run these commands from the project directory:
+Clone the repository and start the development server:
 
 ```bash
+git clone https://github.com/besterdev/frontend-assignment-7-solutions.git
+cd frontend-assignment-7-solutions
 npm ci
 npm run dev
 ```
@@ -44,9 +53,12 @@ Motion handles layout transitions and respects the reduced-motion preference. Th
 GET /api/departments
 ```
 
-Try the [endpoint in your browser](http://localhost:3000/api/departments), use the **Department API** link in the header, or run:
+Try the [live endpoint](https://frontend-assignment-7-solutions.vercel.app/api/departments), use the **Department API** link in the header, or run:
 
 ```bash
+curl --fail-with-body https://frontend-assignment-7-solutions.vercel.app/api/departments
+
+# Local development
 curl --fail-with-body http://localhost:3000/api/departments
 ```
 
@@ -157,6 +169,19 @@ tests/
 ├── timer.test.tsx              # Independent deadlines and timer cleanup
 └── departments.test.ts        # Aggregation and mocked HTTP responses
 ```
+
+## Deployment
+
+Hosted on **Vercel** and connected to the GitHub repository. The production branch is `main`; pushes to it trigger a new deployment. The project root is the repository root, and Vercel detects the Next.js framework and runs `npm run build`.
+
+No application secrets or environment variables need to be configured. The department API runs server-side and fetches DummyJSON over HTTPS.
+
+Production verification on **12 November 2026** confirmed:
+
+- The website and department endpoint were publicly accessible with HTTP 200.
+- Items returned to the bottom of the main list after five seconds and could be returned immediately by clicking.
+- The API grouped 208 users into 12 departments at the time of verification; upstream data may change.
+- No browser page errors or runtime error logs were observed during the verification window.
 
 ## Validation
 
